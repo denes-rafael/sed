@@ -1,0 +1,21 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:homologacaointegracaosed.educacao.sp.gov.br)",
+      "Bash(mkdir -p /tmp/sed-pdfs)",
+      "Read(//tmp/**)",
+      "Bash(curl -sSL -o NCA002.pdf \"https://homologacaointegracaosed.educacao.sp.gov.br/documentacao/CadastrodeAlunos/REST/NCA002_SEESP_Integracao_ListarAlunos.pdf\")",
+      "Bash(curl -sSL -o NCA003.pdf \"https://homologacaointegracaosed.educacao.sp.gov.br/documentacao/CadastrodeAlunos/REST/NCA003_SEESP_Integracao_ExibirFichaAluno.pdf\")",
+      "Bash(curl -sSL -o NCA016.pdf \"https://homologacaointegracaosed.educacao.sp.gov.br/documentacao/CadastrodeAlunos/REST/NCA016_SEESP_Integracao_FichaAluno.pdf\")",
+      "Bash(curl -sSL --ssl-no-revoke -o NCA002.pdf \"https://homologacaointegracaosed.educacao.sp.gov.br/documentacao/CadastrodeAlunos/REST/NCA002_SEESP_Integracao_ListarAlunos.pdf\")",
+      "Bash(curl -sSL --ssl-no-revoke -o NCA003.pdf \"https://homologacaointegracaosed.educacao.sp.gov.br/documentacao/CadastrodeAlunos/REST/NCA003_SEESP_Integracao_ExibirFichaAluno.pdf\")",
+      "Bash(curl -sSL --ssl-no-revoke -o NCA016.pdf \"https://homologacaointegracaosed.educacao.sp.gov.br/documentacao/CadastrodeAlunos/REST/NCA016_SEESP_Integracao_FichaAluno.pdf\")",
+      "Bash(curl -sSL --ssl-no-revoke -o NCA018.pdf \"https://homologacaointegracaosed.educacao.sp.gov.br/documentacao/CadastrodeAlunos/REST/NCA018_SEESP_Integracao_ConsultaRA.pdf\")",
+      "Bash(curl -sSL --ssl-no-revoke -o NCA019.pdf \"https://homologacaointegracaosed.educacao.sp.gov.br/documentacao/CadastrodeAlunos/REST/NCA019_SEESP_Integracao_ConsultaPublica.pdf\")",
+      "Bash(cygpath -w /tmp/sed-pdfs/NCA002.pdf)",
+      "Bash(pip install:*)",
+      "Bash(python -c \":*)",
+      "Bash(cygpath -w /tmp/sed-pdfs/NCA123.pdf)"
+    ]
+  }
+}
