@@ -1,6 +1,6 @@
 # NCA003 - Exibir Ficha Aluno
 
-> **Versao:** 2.8 | **Ultima atualizacao:** 28/10/2025 | **Autor:** Italo G.
+> **Versao:** 2.10 | **Ultima atualizacao:** 14/04/2026 | **Autor:** Italo G.
 
 ## Informacoes Gerais
 
@@ -92,13 +92,15 @@
 | outPossuiNotebookSmartphoneTablet | Alfanumerico (3) | SIM ou NAO |
 | outBolsaFamilia | Alfanumerico (60) | Mensagem indicando que o aluno participa ou nao do programa federal Bolsa Familia |
 | outQuilombola | Alfanumerico (3) | Indica se o aluno e quilombola (Sim / Nao) |
+| outCircenseCigana | Alfanumerico (1) | Indica se o aluno e de comunidade Circense/Cigana (Sim / Nao ou Null) |
 | outTipoSanguineo | Alfanumerico (3) | A+, A-, B+, B-, AB+, AB-, O+, O- |
 | outDoadorOrgaos | Alfanumerico (3) | SIM/NAO |
 | outNomeMunNascto | Alfanumerico (100) | Municipio de nascimento do aluno, caso ele seja brasileiro |
-| outUFMunNascto | Alfanumerico (2) | UF do municipio de nascimento do aluno |
+| outUFMunNascto | Alfanumerico (2) | UF do municipio de nascimento do aluno, caso ele seja brasileiro |
 | outCodMunNasctoDNE | Alfanumerico (4) | Codigo DNE (codigo identificador dos Correios) do municipio de nascimento |
 | outAlunoFalecido | Alfanumerico (4) | Identifica se a ficha do aluno esta desativada devido falecimento: SIM ou NAO |
 | outDataFalecimento | Alfanumerico (10) | Data do falecimento do aluno |
+| outProjetoConexao | Alfanumerico (1) | Identifica estudantes participantes do Projeto Conexao, voltado ao intercambio de alunos vindos de fora para estudo no Estado de Sao Paulo (Nao / Sim) |
 
 ### Grupo outIrmaos (ARRAY [1 : N])
 
@@ -126,10 +128,13 @@
 | outDataEmissaoDoctoCivil | Alfanumerico (10) | Data de emissao do documento civil (DD/MM/AAAA) |
 | outDataEmissaoCertidao | Alfanumerico (10) | Data de emissao da certidao de nascimento (DD/MM/AAAA) |
 | outCodJustificativa | Alfanumerico (1) | Codigo identificador da justificativa da falta de documentos |
-| outJustificativaDocumento | Alfanumerico (100) | Justificativa para a falta de documentos (Certidao Nova, CPF e NIS) |
+| outJustificativaDocumento | Alfanumerico (100) | Justificativa para a falta de documentos (Certidao Nova, CPF e NIS): O (A) aluno nao possui os documentos pessoais solicitados / A Escola nao dispoe ou nao recebeu os documentos pessoais do (a) aluno (a) |
 | outNumeroCNS | Alfanumerico (15) | N. Carteira Nacional de Saude |
 | outCIN | Alfanumerico (1) | Identificador da Carteira de Identificacao Nacional (CIN) |
 | outDataEmissaoCIN | Alfanumerico (10) | Data de Emissao do CIN (DD/MM/AAAA) |
+| outPassaporte | Alfanumerico (15) | Numero do Passaporte |
+| outCdPaisEmissao | Alfanumerico (03) | Codigo do Pais de Emissao |
+| outPaisEmissao | Alfanumerico (60) | Pais de Emissao |
 
 ### Grupo outCertidaoNova (certidao de nascimento formato novo)
 
@@ -176,7 +181,7 @@
 | outLatitude | Alfanumerico (100) | Latitude do endereco residencial |
 | outLongitude | Alfanumerico (100) | Longitude do endereco residencial |
 | outCodLocalizacao | Alfanumerico (2) | Codigo identificador da localizacao |
-| outLocalizacaoDiferenciada | Alfanumerico (100) | Localizacao diferenciada do endereco do aluno |
+| outLocalizacaoDiferenciada | Alfanumerico (100) | Localizacao diferenciada do endereco do aluno: Area de assentamento / Terra indigena / Area onde se localizada em Comunidade remanescente de Quilombos / Nao esta localizado em area de localizacao diferenciada |
 
 ### Grupo outEnderecoIndicativo
 
@@ -221,7 +226,7 @@
 | outTipoMobilidadeReduzida | Alfanumerico (1) | Tipo da mobilidade reduzida: T - temporaria / P - permanente |
 | outDataInicioMobilidadeReduzida | Alfanumerico (10) | DD/MM/AAAA |
 | outDataFimMobilidadeReduzida | Alfanumerico (10) | DD/MM/AAAA |
-| outCodigoNivelSuporte | Alfanumerico (1) | 0 - Nao possui / 1 - Nivel 1 / 2 - Nivel 2 / 3 - Nivel 3 |
+| outCodigoNivelSuporte | Alfanumerico (1) | 0 - Nao possui / 1 - Nivel 1 / 2 - Nivel 2 / 3 - Nivel 3. Descricao: item 2.1.5 do documento NCA017_SEESP_Integracao_Manutencao |
 
 ### Subgrupo outProfissionalApoioEscolarResponse
 
@@ -322,6 +327,7 @@
     "outDataEntradaPais": "",
     "outBolsaFamilia": "",
     "outQuilombola": "",
+    "outCircenseCigana": "",
     "outPossuiInternet": "",
     "outPossuiNotebookSmartphoneTablet": "",
     "outGemeo": "",
@@ -329,6 +335,7 @@
     "outUFMunNascto": "",
     "outAlunoFalecido": "",
     "outDataFalecimento": "",
+    "outProjetoConexao": "",
     "outCodMunNasctoDNE": "",
     "outCodBolsaFamilia": "",
     "outDoadorOrgaos": "",
@@ -355,7 +362,10 @@
     "outDataEmissaoCertidao": "",
     "outNumeroCNS": "",
     "outCIN": "",
-    "outDataEmissaoCIN": ""
+    "outDataEmissaoCIN": "",
+    "outPassaporte": "",
+    "outCdPaisEmissao": "",
+    "outPaisEmissao": ""
   },
   "outJustificativaDocumentos": "",
   "outCertidaoNova": {
@@ -490,3 +500,5 @@
 - O retorno inclui dados pessoais, documentos, certidoes (nova e antiga), endereco residencial e indicativo, telefones, informacoes de deficiencia, necessidades especiais e recursos de avaliacao.
 - O campo outIrmaos retorna uma lista de irmaos do aluno com seus respectivos RAs.
 - Os campos outFlTranstornoAprendizagem e outFlInvestigacaoDeficiencia utilizam valores "S" (Sim) e "N" (Nao).
+- Versao 2.9 (25/03/2026): incluido o campo outCircenseCigana (grupo outDadosPessoais).
+- Versao 2.10 (14/04/2026): incluidos os campos outPassaporte, outCdPaisEmissao e outPaisEmissao (grupo outDocumentos) e outProjetoConexao (grupo outDadosPessoais).

@@ -1,6 +1,6 @@
 # NCA048 - Consultar Turma Classe
 
-> **Versao:** 1.1 | **Ultima atualizacao:** 07/12/2023 | **Autor:** Flavio L. / Italo Galetti
+> **Versao:** 1.2 | **Ultima atualizacao:** 31/08/2026 | **Autor:** Flavio L. / Italo Galetti
 
 ## Informacoes Gerais
 
@@ -63,6 +63,7 @@
 | outHorarioFimAula | hh:mm | Horario fim aula |
 | outCodDuracao | Numerico | Codigo de duracao |
 | outCodHabilitacao | Numerico | Codigo de Habilitacao |
+| outCodTipoHabilitacao | Numerico | Tipo do Codigo de Habilitacao |
 | outAtividadesComplementar | Numerico | Codigo Atividade Complementar |
 | outCodTipoEnsino | Numerico | Codigo do Tipo de Ensino |
 | outNomeTipoEnsino | Alfanumerico | Descricao do Tipo de Ensino |
@@ -130,6 +131,7 @@
     "outHorarioFimAula": "17:30",
     "outCodDuracao": 0,
     "outCodHabilitacao": 0,
+    "outCodTipoHabilitacao": 0,
     "outAtividadesComplementar": [],
     "outCodTipoEnsino": 6,
     "outNomeTipoEnsino": "EDUCACAO INFANTIL",
@@ -179,6 +181,7 @@
 ## Observacoes
 
 - O campo outCodSituacao foi incluido na versao 1.1, com valores: 0 - Ativo, 99 - Excluido.
+- O campo outCodTipoHabilitacao (tipo do codigo de habilitacao) foi incluido na versao 1.2 (31/08/2026).
 - Este metodo retorna todos os dados de configuracao de uma turma/classe, incluindo dias da semana e horarios detalhados.
 - Os parametros de entrada devem ser enviados via QUERY Parameters.
 - O token de acesso tem validade de 30 minutos e deve ser obtido pelo metodo ValidarUsuario.

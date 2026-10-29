@@ -1,6 +1,6 @@
 # NCA016 - Ficha Aluno
 
-> **Versao:** 2.9 | **Ultima atualizacao:** 28/10/2025 | **Autor:** Italo G.
+> **Versao:** 2.12 | **Ultima atualizacao:** 07/07/2026 | **Autor:** Italo G.
 
 ## Informacoes Gerais
 
@@ -40,15 +40,17 @@
 | inUFMunNascto | Alfanumerico (2) | Opcional. Obrigatorio quando inNacionalidade = 1 | UF do municipio de nascimento do aluno |
 | inCodPaisOrigem | Alfanumerico (3) | Obrigatorio | Codigo do pais de origem do aluno (item 2.1.2). Caso inNacionalidade = 1, informar: 76 |
 | inPaisOrigem | Alfanumerico (60) | Obrigatorio | Nome do pais de origem do aluno (item 2.1.2). Caso inNacionalidade = 1, informar: Brasil |
-| inCodMunNasctoDNE | Alfanumerico (4) | Opcional | Codigo DNE (Correios) do municipio de nascimento |
+| inCodMunNasctoDNE | Alfanumerico (4) | Opcional. Obrigatorio quando inNacionalidade = 1 | Codigo DNE (Correios) do municipio de nascimento |
 | inDataEntradaPais | Alfanumerico (10) | Opcional. Obrigatorio quando inNacionalidade = 2 | Data de entrada no Brasil (DD/MM/AAAA) |
 | inBolsaFamilia | Alfanumerico (1) | Opcional | Indica se o aluno participa do programa Bolsa Familia: 0 - Nao / 1 - Sim |
 | inQuilombola | Alfanumerico (1) | Opcional | Indica se o aluno e quilombola: 0 - Nao / 1 - Sim |
+| inCircenseCigana | Alfanumerico (1) | Opcional | Indica se o aluno e membro de comunidade Circense ou Cigana: 0 - Nao / 1 - Sim |
 | inPossuiInternet | Alfanumerico (1) | Obrigatorio | Indica se o aluno possui internet: N - Nao / S - Sim |
 | inPossuiNotebookSmartphoneTablet | Alfanumerico (1) | Obrigatorio | Indica se o aluno possui Notebook/Smartphone/Tablet: N - Nao / S - Sim |
 | inTipoSanguineo | Alfanumerico (3) | Opcional | A+, A-, B+, B-, AB+, AB-, O+, O- |
 | inDoadorOrgaos | Alfanumerico (3) | Opcional | SIM/NAO |
 | inCodTipoIndigena | Alfanumerico (3) | Opcional, obrigatorio se inCorRaca = 5 | Identificacao dos povos indigenas (item 2.1.6) |
+| inProjetoConexao | Alfanumerico (1) | Opcional | Identifica estudantes participantes do Projeto Conexao, voltado ao intercambio de alunos vindos de fora para estudo no Estado de Sao Paulo: 0 - Nao / 1 - Sim |
 
 ### Grupo inDocumentos
 
@@ -66,6 +68,9 @@
 | inNumeroCNS | Alfanumerico (15) | Opcional | N. Carteira Nacional de Saude |
 | inCIN | Alfanumerico (1) | Opcional | Identificador do CIN (Carteira de Identificacao Nacional): S - Sim / N - Nao |
 | inDataEmissaoCIN | Alfanumerico (10) | Obrigatorio se inCIN = S | Data de Emissao do CIN (DD/MM/AAAA) |
+| inNumPassaporte | Alfanumerico (15) | Obrigatorio se inProjetoConexao = 1 (Sim) | Numero do Passaporte. Sempre em letras maiusculas (uppercase) |
+| inCodPaisEmissao | Alfanumerico (03) | Obrigatorio se inProjetoConexao = 1 (Sim) | Codigo do Pais de Emissao (item 2.1.2) |
+| inPaisEmissao | Alfanumerico (60) | Obrigatorio se inProjetoConexao = 1 (Sim) | Pais de Emissao (item 2.1.2) |
 
 ### Grupo inCertidaoNova (certidao de nascimento formato novo)
 
@@ -128,7 +133,7 @@
 | inTipoMobilidadeReduzida | Alfanumerico (1) | Opcional | Tipo da mobilidade reduzida: T - temporaria / P - permanente |
 | inDataInicioMobilidadeReduzida | Alfanumerico (10) | Obrigatorio se Tipo Mobilidade Reduzida = T ou P | DD/MM/AAAA |
 | intDataFimMobilidadeReduzida | Alfanumerico (10) | Obrigatorio se Tipo Mobilidade Reduzida = T | DD/MM/AAAA |
-| inCodigoNivelSuporte | Alfanumerico (1) | Obrigatorio se informado alguma necessidade em inCodNecessidade | 1 - Nivel 1 / 2 - Nivel 2 / 3 - Nivel 3 |
+| inCodigoNivelSuporte | Alfanumerico (1) | Obrigatorio se informado alguma necessidade em inCodNecessidade | 1 - Nivel 1 / 2 - Nivel 2 / 3 - Nivel 3. Descricao: item 2.1.5 do documento NCA017_SEESP_Integracao_Manutencao |
 
 ### Subgrupo inProfissionalApoioEscolarVO
 
@@ -207,6 +212,7 @@
     "inSexo": "",
     "inBolsaFamilia": "",
     "inQuilombola": "",
+    "inCircenseCigana": "",
     "inPossuiInternet": "",
     "inPossuiNotebookSmartphoneTablet": "",
     "inEmail": "",
@@ -220,7 +226,8 @@
     "inPaisOrigem": "",
     "inTipoSanguineo": "",
     "inDoadorOrgaos": "",
-    "inCodTipoIndigena": ""
+    "inCodTipoIndigena": "",
+    "inProjetoConexao": ""
   },
   "inDeficiencia": {
     "inMobilidadeReduzida": true,
@@ -277,7 +284,10 @@
     "inJustificativaDocumentos": "",
     "inNumeroCNS": "",
     "inCIN": "",
-    "inDataEmissaoCIN": ""
+    "inDataEmissaoCIN": "",
+    "inNumPassaporte": "",
+    "inCodPaisEmissao": "",
+    "inPaisEmissao": ""
   },
   "inCertidaoAntiga": {
     "inNumCertidao": "",
@@ -435,3 +445,6 @@ Regras: Grupo de Deficiencias do Aluno (inDeficiencia) x Grupo dos Recursos nece
 - A tabela completa de paises (item 2.1.2) e a tabela de povos indigenas (item 2.1.6) estao disponiveis no documento original do PDF.
 - Nome social: Decreto 55.588/10; Deliberacao CEE 125/14; Resolucao SE 45/2014; Parecer CNE/CP n. 14/2017.
 - Nome afetivo: Lei N. 16.785/18.
+- Versao 2.10 (25/03/2026): incluido o campo inCircenseCigana.
+- Versao 2.11 (14/04/2026): incluidos os campos inNumPassaporte, inCodPaisEmissao, inPaisEmissao (grupo inDocumentos) e inProjetoConexao (grupo inDadosPessoais). Os tres primeiros sao obrigatorios quando inProjetoConexao = 1.
+- Versao 2.12 (07/07/2026): o campo inCodMunNasctoDNE passa a ser obrigatorio quando inNacionalidade = 1.

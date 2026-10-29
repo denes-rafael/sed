@@ -1,6 +1,8 @@
 # NCA020 - Concluintes
 
 > Esse método tem como finalidade extrair e retornar ao solicitante dados referentes à conclusão do ensino médio ou ensino técnico de um determinado aluno, apenas para alunos da rede estadual.
+>
+> **Versão:** 1.4 | **Última atualização:** 17/04/2026 | **Autor:** Alexandre Mendes / Italo G.
 
 ## Informações Gerais
 
@@ -9,6 +11,8 @@
 | **Código** | NCA020 |
 | **Método HTTP** | GET |
 | **URL** | `/Matricula/Concluintes` |
+| **URL (Produção)** | `https://integracaosed.educacao.sp.gov.br/ncaapi/api/Matricula/Concluintes` |
+| **URL (Homologação)** | `https://homologacaointegracaosed.educacao.sp.gov.br/ncaapi/api/Matricula/Concluintes` |
 | **Content-Type** | application/json; charset=UTF-8 |
 | **Autenticação** | Authorization: Bearer Token (gerado pelo método ValidarUsuario, expira em 30 minutos) |
 
@@ -23,11 +27,12 @@
 | inNumRNE | Alfanumérico (8) | Opcional | Número do RNE do aluno, caso de nacionalidade estrangeira |
 | inNumRA | Alfanumérico (12) | Opcional | Número do RA do aluno, sem o dígito |
 | inNumVistoConfere | Alfanumérico (11) | Opcional | Identificação do ato de publicação |
+| inIncluirPDF | Boolean | Opcional | Se "inIncluirPDF" = false não gera PDF. Se "inIncluirPDF" = true ou não informado gera PDF |
 
 ## Exemplo de Request
 
 ```
-GET /Matricula/Concluintes?inNumRG=&inSiglaUFRG=&inNumRNE=&inNumRA=&inNumVistoConfere=
+GET /Matricula/Concluintes?inNumRG=&inSiglaUFRG=&inIncluirPDF=true
 ```
 
 ## Parâmetros de Saída (Response)
@@ -161,4 +166,8 @@ GET /Matricula/Concluintes?inNumRG=&inSiglaUFRG=&inNumRNE=&inNumRA=&inNumVistoCo
 - Apenas para alunos da rede estadual
 - O campo SemEfeito (booleano) indica se a publicação está sem efeito (adicionado na versão 1.3)
 - Os parâmetros de entrada são todos opcionais (query parameters)
-- O campo outArquivo retorna o PDF em formato Base64
+- O campo outArquivo retorna o PDF em formato Base64; o PDF só é gerado quando inIncluirPDF = true ou não informado (inIncluirPDF = false não gera PDF)
+- Versão 1.4 (17/04/2026): incluído o parâmetro inIncluirPDF (o histórico de revisões do PDF oficial o chama de "parâmetro de saída", mas a tabela o lista entre os parâmetros de entrada)
+- Versão 1.1 (25/09/2019): a chamada mudou de /Concluinte/Concluintes para /Matricula/Concluintes; incluídos inNumRA, inNumRG, inNumRNE e inNumVistoConfere; excluídos inNumDocumento e inTipoDocumento
+- Versão 1.2 (07/10/2019): incluídos os grupos outConsultaPublicaConcluinte e outConsultaPublicaConcluinteCSU
+- No exemplo de retorno do PDF oficial o grupo CSU aparece como "outConsultaPublicaCsuConcluinte" (a tabela diz outConsultaPublicaConcluinteCSU) e o campo de ato legal aparece como "outAnoLegal" (a tabela diz outAtoLegal); SemEfeito não aparece no exemplo (conferir no PDF)

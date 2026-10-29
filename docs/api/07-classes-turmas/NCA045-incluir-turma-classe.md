@@ -1,6 +1,6 @@
 # NCA045 - Incluir Turma Classe
 
-> **Versao:** 1.6 | **Ultima atualizacao:** 30/06/2025 | **Autor:** Alexandre M. / Flavio Leamari / Italo G.
+> **Versao:** 1.7 | **Ultima atualizacao:** 31/08/2026 | **Autor:** Alexandre M. / Flavio Leamari / Italo G.
 
 ## Informacoes Gerais
 
@@ -41,6 +41,7 @@
 | inHorarioFimAula | Alfanumerico (05) | Obrigatorio | Horario de fim da turma (hh:mm) |
 | inCodDuracao | Alfanumerico (01) | Obrigatorio | Periodo de funcionamento: 0 - Anual, 1 - Primeiro Semestre, 2 - Segundo Semestre |
 | inCodHabilitacao | Alfanumerico (06) | Opcional; obrigatorio caso tipo de ensino seja educacao profissional | Codigo de habilitacao (INEP / MEC) |
+| inCodTipoHabilitacao | Alfanumerico (02) | Opcional; obrigatorio quando existir mais de um tipo para o mesmo inCodHabilitacao | Tipo do Codigo de Habilitacao (INEP / MEC). Obtido via /DadosBasicos/HabilitacaoPorEscolaNEM |
 | inCodigoAtividadeComplementar | Alfanumerico | Opcional; dependendo do tipo de ensino | Array com codigos das atividades oferecidas na turma. Obtidos via /TipoEnsino/ConsultaTipoEnsinoAtividadeComplementar |
 
 ### Grupo inDiasDaSemana (dias e horarios de funcionamento)
@@ -107,6 +108,7 @@
   "inHorarioInicioAula": "",
   "inHorarioFimAula": "",
   "inCodHabilitacao": "",
+  "inCodTipoHabilitacao": "",
   "inCodigoAtividadeComplementar": [""],
   "inDiasDaSemana": {
     "inFlagSegunda": "",
@@ -148,6 +150,7 @@
 
 | Parametro | Tipo/Tamanho | Descricao |
 |---|---|---|
+| outListaCandidatos | Alfanumerico | Grupo de certificados do candidato no formato ARRAY [1 : N] (consta na tabela de saida do PDF oficial, mas nao aparece no exemplo de retorno; conferir no PDF) |
 | outSucesso | Alfanumerico (09) | Numero da classe recem criada |
 | outErro | Alfanumerico (1000) | Retorno de erros de negocios ou erros de execucao do metodo |
 | outProcessoID | Numerico | Codigo identificador da requisicao processada |
@@ -208,7 +211,7 @@
 |---|---|---|
 | /DadosBasicos/AreasItinerarioFormativo | Consulta Areas Itinerarios | GET (passando inRedeEnsino) |
 | /DadosBasicos/TipoCursoItinerarioFormativo | Consulta Tipo de Curso | GET |
-| /DadosBasicos/HabilitacaoPorEscolaNEM | Consulta a Habilitacao | POST (inCodEscola, inCodUnidade, inCodigoTipoEnsino, inAnoLetivo, inCodTipoClasse) |
+| /DadosBasicos/HabilitacaoPorEscolaNEM | Consulta a Habilitacao (retorna outCodHabilitacao, outCodTipoHabilitacao e outNomeHabilitacaoQualificacao) | POST (inCodEscola, inCodUnidade, inCodigoTipoEnsino, inAnoLetivo, inCodTipoClasse) |
 | /DadosBasicos/TipoEnsino | Consulta Tipo de Ensino | GET |
 | /DadosBasicos/TabelasDominio | Consulta Raca, Nacionalidade, Turno, etc | GET |
 | /TipoEnsino/ConsultaTipoEnsinoAtividadeComplementar | Consulta Atividades Complementares | GET (inAnoLetivo, inCodEscola, inCodUnidade) |
@@ -217,6 +220,7 @@
 
 ## Observacoes
 
+- Na versao 1.7 (31/08/2026) foi incluido o campo inCodTipoHabilitacao (Codigo de Tipo de Habilitacao, INEP / MEC), obrigatorio quando existir mais de um tipo para o mesmo inCodHabilitacao. O tipo e obtido em /DadosBasicos/HabilitacaoPorEscolaNEM (campo outCodTipoHabilitacao).
 - Na versao 1.6 foi incluido tratamento para os Tipos de Ensino "109" (ITINERARIO FORMATIVO) e "101" (NOVO ENSINO MEDIO), com os campos inAreasConhecimentos, inCodTipoCurso e inCodHabilitacaoSED.
 - O campo inDiasSemana foi alterado para inDiasDaSemana na versao 1.1.
 - O campo inCodTipoEnsino foi alterado de alfanumerico (2) para alfanumerico (3) na versao 1.5.

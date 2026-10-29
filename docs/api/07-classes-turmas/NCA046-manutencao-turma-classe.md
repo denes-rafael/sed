@@ -1,6 +1,6 @@
 # NCA046 - Manutencao Turma Classe
 
-> **Versao:** 1.3 | **Ultima atualizacao:** 27/02/2023 | **Autor:** Flavio Leamari / Italo Galetti
+> **Versao:** 1.4 | **Ultima atualizacao:** 31/08/2026 | **Autor:** Flavio Leamari / Italo Galetti
 
 ## Informacoes Gerais
 
@@ -42,6 +42,7 @@
 | inHorarioFimAula | Alfanumerico (5) | Obrigatorio | Horario de termino da turma (hh:mm) |
 | inCodDuracao | Alfanumerico (1) | Obrigatorio | Periodo de funcionamento da turma: 0 - Anual, 1 - Primeiro Semestre, 2 - Segundo Semestre |
 | inCodHabilitacao | Alfanumerico (6) | Opcional; obrigatorio caso tipo de ensino seja educacao profissional | Codigo de habilitacao (INEP / MEC) |
+| inCodTipoHabilitacao | Alfanumerico (6) | Opcional; obrigatorio quando existir mais de um tipo para o mesmo inCodHabilitacao | Codigo do Tipo de habilitacao (INEP / MEC). Obtido via /DadosBasicos/HabilitacaoPorEscolaNEM |
 | inCodigoAtividadeComplementar | Alfanumerico | Opcional; dependendo do tipo de ensino | Array com codigos das atividades oferecidas na turma, separados por virgula. Obtidos via /DadosBasicos/AtividadeComplementar |
 
 ### Grupo inDiasDaSemana (dias e horarios de funcionamento)
@@ -86,6 +87,7 @@
   "inHorarioFimAula": "",
   "inCodDuracao": "",
   "inCodHabilitacao": "",
+  "inCodTipoHabilitacao": "",
   "inCodigoAtividadeComplementar": [
     "", "", "", "", ""
   ],
@@ -149,6 +151,8 @@
 
 - O campo inDiasSemana foi alterado para inDiasDaSemana na versao 1.1.
 - O campo inCodTipoEnsino foi alterado de alfanumerico (2) para alfanumerico (3) na versao 1.3.
+- Na versao 1.4 (31/08/2026) foi incluido o campo inCodTipoHabilitacao (Codigo do Tipo de Habilitacao, INEP / MEC), obrigatorio quando existir mais de um tipo para o mesmo inCodHabilitacao. O PDF oficial registra o tamanho como Alfanumerico (6), enquanto o NCA045 1.7 registra Alfanumerico (02) para o mesmo campo; mantido como escrito em cada documento.
+- A capa do PDF oficial ainda traz "Versao 1.3"; o historico de revisoes e o cabecalho das paginas trazem 1.4 (31/08/2026).
 - As flags de dias da semana devem conter valores fixos: "1" para segunda, "2" para terca, "3" para quarta, "4" para quinta, "5" para sexta, "6" para sabado.
 - Quando uma flag de dia e informada, os horarios de inicio e fim daquele dia tornam-se obrigatorios.
 - O token de acesso tem validade de 30 minutos e deve ser obtido pelo metodo ValidarUsuario.

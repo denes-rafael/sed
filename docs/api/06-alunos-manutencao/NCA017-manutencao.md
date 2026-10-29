@@ -1,6 +1,6 @@
 # NCA017 - Manutencao da Ficha do Aluno
 
-> **Versao:** 2.18 | **Ultima atualizacao:** 25/08/2025 | **Autor:** Alexandre Mendes / Flavio J. Leamari / Italo Galetti
+> **Versao:** 2.22 | **Ultima atualizacao:** 07/07/2026 | **Autor:** Alexandre Mendes / Flavio J. Leamari / Italo Galetti
 
 ## Informacoes Gerais
 
@@ -49,15 +49,17 @@
 | inUFMunNascto | Alfanumerico (2) | Opcional; obrigatorio se inNacionalidade = 1 | UF do municipio de nascimento |
 | inCodPaisOrigem | Alfanumerico (3) | Opcional | Codigo do pais de origem (ver tabela 2.1.2). Se inNacionalidade = 1, informar: 76 |
 | inPaisOrigem | Alfanumerico (60) | Opcional; obrigatorio se inNacionalidade = 2 | Nome do pais de origem. Se inNacionalidade = 1, informar: Brasil |
-| inCodMunNasctoDNE | Alfanumerico (4) | Opcional | Codigo DNE (Correios) do municipio de nascimento |
+| inCodMunNasctoDNE | Alfanumerico (4) | Opcional; obrigatorio se inNacionalidade = 1 | Codigo DNE (Correios) do municipio de nascimento |
 | inDataEntradaPais | Alfanumerico (10) | Opcional; obrigatorio se inNacionalidade = 2 | Data de entrada no Brasil (DD/MM/AAAA) |
 | inBolsaFamilia | Alfanumerico (1) | Opcional | Participa do programa Bolsa Familia: 0 - Nao, 1 - Sim |
 | inQuilombola | Alfanumerico (1) | Opcional | Aluno quilombola: 0 - Nao, 1 - Sim |
+| inCircenseCigana | Alfanumerico (1) | Opcional | Indica se o aluno pertence a comunidade Circense ou Cigana: 0 - Nao, 1 - Sim |
 | inPossuiInternet | Alfanumerico (1) | Obrigatorio | Possui internet: N - Nao, S - Sim |
 | inPossuiNotebookSmartphoneTablet | Alfanumerico (1) | Obrigatorio | Possui Notebook/Smartphone/Tablet: N - Nao, S - Sim |
 | inTipoSanguineo | Alfanumerico (3) | Opcional | Tipo sanguineo: A+, A-, B+, B-, AB+, AB-, O+, O- |
 | inDoadorOrgaos | Alfanumerico (3) | Opcional | Doador de orgaos: SIM/NAO |
 | inCodTipoIndigena | Alfanumerico (3) | Opcional; obrigatorio se inCorRaca = 5 | Identificacao dos povos indigenas (ver tabela 2.1.7) |
+| inProjetoConexao | Alfanumerico (1) | Opcional | Identifica estudantes participantes do Projeto Conexao, voltado ao intercambio de alunos vindos de fora para estudo no Estado de Sao Paulo: 0 - Nao, 1 - Sim |
 
 ### Grupo inDocumentos (documentos do aluno)
 
@@ -75,6 +77,9 @@
 | inJustificativaDocumentos | Alfanumerico (1) | Opcional; obrigatorio quando inCPF, inNumNIS e inCertidaoNova nao preenchidos | Justificativa para falta de documentos: 1 - Aluno nao possui documentos pessoais, 2 - Escola nao dispoe dos documentos |
 | inCIN | Alfanumerico (1) | Opcional | CIN (Carteira de Identificacao Nacional): "S" Sim ou "N" Nao |
 | inDataEmissaoCIN | Alfanumerico (10) | Obrigatorio se inCIN = "S" | Data de Emissao do CIN (DD/MM/AAAA) |
+| inNumPassaporte | Alfanumerico (15) | Obrigatorio se inProjetoConexao = 1 (Sim) | Numero do Passaporte. Sempre em letras maiusculas (uppercase) |
+| inCodPaisEmissao | Alfanumerico (03) | Obrigatorio se inProjetoConexao = 1 (Sim) | Codigo do Pais de Emissao (ver tabela 2.1.2) |
+| inPaisEmissao | Alfanumerico (60) | Obrigatorio se inProjetoConexao = 1 (Sim) | Pais de Emissao (ver tabela 2.1.2) |
 
 ### Grupo inCertidaoNova (certidao de nascimento formato novo)
 
@@ -190,15 +195,15 @@
 | inTelefone | Alfanumerico | Opcional | Grupo de telefones do aluno. Os telefones informados substituirao todos os ja existentes na ficha do aluno |
 | inDDDNumero | Alfanumerico (2) | Obrigatorio | DDD do telefone (99) |
 | inNumero | Alfanumerico (9) | Obrigatorio | Numero do telefone (999999999) |
-| inTipoTelefone | Alfanumerico (1) | Obrigatorio | Tipo do telefone: 1 - Residencial, 2 - Comercial, 3 - Celular, 4 - Recados, 5 - Celular Principal |
-| inSMS | Alfanumerico (1) | Opcional; valido apenas para inTipoTelefone = 3 | Permissao para envio de SMS: 0 - Nao, 1 - Sim |
+| inTipoTelefone | Alfanumerico (1) | Obrigatorio | Tipo do telefone: 1 - Residencial, 2 - Comercial, 3 - Celular, 4 - Recados, 5 - Celular Principal. Obs.: e obrigatorio informar ao menos um telefone do tipo 5 - Celular Principal |
+| inSMS | Alfanumerico (1) | Opcional; valido apenas para inTipoTelefone = 3 | Permissao para envio de SMS para esse numero: 0 - Nao, 1 - Sim |
 | inComplemento | Alfanumerico (30) | Opcional | Complemento do telefone |
 
 ### Grupo inRastreio (dados de rastreamento)
 
 | Parametro | Tipo/Tamanho | Obrigatorio | Descricao |
 |---|---|---|---|
-| inRastreio | Alfanumerico | Nao documentado | Grupo de dados de rastreamento |
+| inRastreio | Alfanumerico | Nao documentado | Grupo de dados de rastreamento (consta apenas no exemplo de estrutura; nao esta na tabela de parametros do PDF oficial) |
 | inUsuarioRemoto | Alfanumerico | Nao documentado | Usuario remoto |
 | inNomeUsuario | Alfanumerico | Nao documentado | Nome do usuario |
 | inNumCPF | Alfanumerico | Nao documentado | Numero do CPF |
@@ -226,6 +231,7 @@
     "inSexo": "",
     "inBolsaFamilia": "",
     "inQuilombola": "",
+    "inCircenseCigana": "",
     "inPossuiInternet": "",
     "inPossuiNotebookSmartphoneTablet": "",
     "inEmail": "",
@@ -239,7 +245,8 @@
     "inPaisOrigem": "",
     "inTipoSanguineo": "",
     "inDoadorOrgaos": "",
-    "inCodTipoIndigena": ""
+    "inCodTipoIndigena": "",
+    "inProjetoConexao": ""
   },
   "inDeficiencia": {
     "inMobilidadeReduzida": true,
@@ -296,7 +303,10 @@
     "inJustificativaDocumentos": "",
     "inNumeroCNS": "",
     "inCIN": "",
-    "inDataEmissaoCIN": ""
+    "inDataEmissaoCIN": "",
+    "inNumPassaporte": "",
+    "inCodPaisEmissao": "",
+    "inPaisEmissao": ""
   },
   "inCertidaoAntiga": {
     "inNumCertidao": "",
@@ -465,6 +475,15 @@ Dados disponiveis em: `/api/DadosBasicos/NecessidadesEspeciais`
 - **20 a 23 - TRANSTORNOS:** Exigem ao menos um recurso (permitem "nenhum").
 - **30 - ALTAS HABILIDADES:** Nao exige recurso. Nao pode ser combinado com Deficiencia Intelectual ou Sindrome de Down.
 
+**Validacao de auxilios (codigos de necessidade permitidos):**
+- Auxilio Leitor e Auxilio para Transcricao: apenas para as necessidades 2, 3, 6, 7, 8, 9, 10, 11, 12, 20, 21, 22, 23.
+- Guia Interprete: apenas para a necessidade 6.
+- Interprete Libras e Leitura Labial: apenas para as necessidades 4, 5 ou 6.
+- Prova Ampliada: apenas para as necessidades 3 ou 6.
+- Prova em Braille: apenas para as necessidades 6 ou 2.
+- CD com audio para deficiente visual: para todas, exceto as enquadradas como surdez.
+- Prova de Lingua Portuguesa como segunda lingua e Prova em Video em Libras: para todas, exceto as enquadradas como cegueira.
+
 **Conflito entre auxilios:**
 - Leitura Labial, Interprete Libras e Guia Interprete nao podem ser ativados todos juntos.
 - Prova em Braille nao pode ser ativado junto com Prova Ampliada.
@@ -474,8 +493,8 @@ Dados disponiveis em: `/api/DadosBasicos/NecessidadesEspeciais`
 ### 2.1.5 - Codigo de Nivel de Suporte
 
 - **Nivel 1:** O estudante e capaz de realizar a maioria das atividades de forma autonoma, mas ocasionalmente necessita de apoio para amplificar sua comunicacao, participacao e integracao nas diversas demandas do cotidiano em ambiente escolar.
-- **Nivel 2:** O estudante necessita de apoio moderado para participar das atividades escolares e sociais. Pode ter dificuldades significativas na comunicacao, interacao social e comportamento.
-- **Nivel 3:** O estudante necessita de apoio substancial e continuo para participar das atividades escolares e de vida diaria. Apresenta limitacoes severas na comunicacao e interacao social.
+- **Nivel 2:** O estudante necessita de suporte substancial, por apresentar dificuldades que impactam a execucao de atividades, podendo apresentar desafios de comunicacao e sociabilizacao; e comum necessitar de ajustes continuos de rotina, curriculo acessivel e material adaptado.
+- **Nivel 3:** O estudante enfrenta deficits severos que afetam profundamente todas as areas da vida, requerendo apoio muito substancial e continuo (ajuda pessoal, tecnologia assistiva avancada, suporte adaptado e maior demanda por seguranca e bem-estar no ambiente escolar).
 
 ### 2.1.7 - Tabela dos Povos Indigenas
 
@@ -493,5 +512,11 @@ Dados disponiveis em: `/api/DadosBasicos/TabelasDominio`
 - Campos incluidos na versao 2.14: inCIN e inDataEmissaoCIN.
 - Campos incluidos na versao 2.16: inCodTipoIndigena e necessidades especiais 201-206 (Transtornos de Aprendizagem).
 - Campos incluidos na versao 2.18: inInvestigacaoDeficiencia, inComprovanteInvestigacao (inDataReferencia, inObservacoes, inComprovanteURIBase64).
+- Versao 2.19 (25/03/2026): incluido o campo inCircenseCigana.
+- Versao 2.20 (14/04/2026): incluidos os campos inNumPassaporte, inCodPaisEmissao, inPaisEmissao (grupo inDocumentos) e inProjetoConexao (grupo inDadosPessoais). Os tres primeiros sao obrigatorios quando inProjetoConexao = 1.
+- Versao 2.21 (12/05/2026): incluida a observacao de que e obrigatorio informar ao menos um telefone do tipo 5 - Celular Principal em inTipoTelefone (o tipo 5 existe desde a versao 2.13, de 20/01/2025).
+- Versao 2.22 (07/07/2026): o campo inCodMunNasctoDNE passa a ser obrigatorio quando inNacionalidade = 1.
+- A capa do PDF oficial traz "Versao 2.21"; o historico de revisoes e o cabecalho das paginas trazem 2.22 (07/07/2026).
+- Na pagina 11 do PDF oficial as linhas de inApoioBanheiro a inDataFimVigenciaAtividadeEscolar e de inRecursoAvaliacao a inNenhum aparecem duplicadas; na repeticao, inNenhum traz "2 - Nao / 3 - Sim", o que parece erro de digitacao (conferir no PDF). Aqui vale a primeira ocorrencia (0 - Nao, 1 - Sim).
 - O campo inCodLocalizacaoDiferenciada foi alterado na versao 2.11: "Nao esta em area de localizacao diferenciada" passou a ser tipo 7.
 - O token de acesso tem validade de 30 minutos e deve ser obtido pelo metodo ValidarUsuario.

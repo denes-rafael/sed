@@ -19,6 +19,8 @@ O token deve ser enviado no header `Authorization` das requisicoes subsequentes.
 
 [Pagina de documentacao oficial (PDFs)](https://homologacaointegracaosed.educacao.sp.gov.br/documentacao/CadastrodeAlunos/REST/)
 
+Os servicos NCA003, NCA016, NCA017, NCA020, NCA045, NCA046 e NCA048 desta copia foram conferidos com os PDFs oficiais em 29/10/2026.
+
 ---
 
 ## Indice de Endpoints
